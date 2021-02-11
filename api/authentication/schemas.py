@@ -1,17 +1,17 @@
-from pydantic import BaseModel, validators
+from pydantic import BaseModel, validator
 import re
 
-
-REGEX_PASSWORD = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$'
+from fastapi import HTTPException
 
 
 class NewUserSchema(BaseModel):
     identifiant: str
     password: str
 
-    @validators('password')
+    @validator('password')
     def validate_password(cls, v):
-        if re.search(REGEX_PASSWORD, v):
+        REGEX_PASSWORD = r'(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}'
+        if re.search(REGEX_PASSWORD, v) is not None:
             return v
         else:
-            ValueError("password is not strong enough")
+            raise HTTPException(status_code=422, detail="Password not strong enough")

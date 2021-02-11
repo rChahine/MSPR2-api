@@ -8,7 +8,7 @@ src_paths = ["api", "tests"]
 virtual_env = ".venv"
 
 [tool.poetry]
-name = "mspr2"
+name = "api"
 version = "0.1.0"
 description = ""
 authors = ["Romain CHAHINE <romain.chahine@rwigo.com>"]
@@ -35,8 +35,6 @@ pytest = "^6.2.1"
 pylint = "^2.6.0"
 matplotlib = "^3.3.3"
 typer = "^0.3.2"
-
-
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
