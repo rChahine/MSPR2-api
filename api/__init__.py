@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from api.authentication.routes import router as AuthRouter
 from api.upload.routes import router as UploadRouter
 from .settings import TESTING
+import sys
+
 
 app = FastAPI(
     title="MSPR2"
