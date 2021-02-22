@@ -44,7 +44,7 @@ pipeline {
         stage('RunApi') {
             steps {
                 sh '''#!/bin/bash
-                    sudo /etc/poetry/bin/poetry run uvicorn api:app --host 0.0.0.0 --port 80
+                    sudo /etc/poetry/bin/poetry run uvicorn api:app
                 '''
             }
         }
