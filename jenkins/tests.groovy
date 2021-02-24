@@ -2,28 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('prepare') {
+        stage('Setup config') {
             steps {
                 sh '''#!/bin/bash
-                    rm .env
                     touch .env
                     echo '
-                        DATABASE_URL=postgresql://ci:123456789@localhost:5432/ci_test
-                        JWT_SECRET=zefuihzefizpaefhzoiefhzeiofhze2342ofhizefzoe
+                        DATABASE_URL=postgresql://mspr2:123456789@localhost:5432/mspr2_test
+                        SECRET_KEY=zefuihzefizpaefhzoiefhzeiofhze2342ofhizefzoe
                         TESTING=true
                     ' > .env
                 '''
             }
         }
-        stage('Setup venv') {
+        stage('Install latests dependencies') {
             steps {
                 sh '''#!/bin/bash
-
-                    echo "Running virtualenv ..."
-                    source .venv/bin/activate
-
-                    echo "Install dependencies ..."
-                    pip install -r requirements.txt
+                    sudo /etc/poetry/bin/poetry install
                 '''
             }
         }
@@ -31,7 +25,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                    echo "Running tests ..."
-                   pytest
+                   sudo /etc/poetry/bin/poetry run pytest
                 '''
             }
         }
