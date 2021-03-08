@@ -49,7 +49,7 @@ async def upload_csv(
     nb_line = 0
 
     with open(f'{file_location}/{file.filename}', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',')
+        spamreader = csv.reader(csvfile, delimiter=';')
         for row in spamreader:
             if nb_line > 0:
                 print(row)
