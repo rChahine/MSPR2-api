@@ -21,6 +21,7 @@ async def upload_csv(
     user: User = Depends(get_user),
     session: Session = Depends(get_session)
 ):
+    print(file.content_type)
     if file.content_type == "text/csv":
 
         file_content = await file.read()
