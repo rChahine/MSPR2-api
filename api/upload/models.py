@@ -18,5 +18,6 @@ class Data(Base):
 
     id = Column(Integer, primary_key=True)
     id_file = Column(Integer, ForeignKey('file_upload.id'), nullable=False)
+    uniquId = Column(String, nullable=False)
     information = Column(String, nullable=False)
     valeur = Column(String, nullable=False)
