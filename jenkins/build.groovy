@@ -18,7 +18,7 @@ pipeline {
         stage('Install latests dependencies') {
             steps {
                 sh '''#!/bin/bash
-                    poetry install
+                    sudo /etc/poetry/bin/poetry install
                 '''
             }
         }
@@ -37,14 +37,14 @@ pipeline {
         stage('MigrateDatabase') {
             steps {
                 sh '''#!/bin/bash
-                    poetry run alembic upgrade head
+                    sudo /etc/poetry/bin/poetry run alembic upgrade head
                 '''
             }
         }
         stage('RunApi') {
             steps {
                 sh '''#!/bin/bash
-                    poetry run uvicorn api:app --host 0.0.0.0 --port 80
+                    sudo /etc/poetry/bin/poetry run uvicorn api:app
                 '''
             }
         }
