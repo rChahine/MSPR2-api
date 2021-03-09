@@ -22,18 +22,7 @@ pipeline {
                 '''
             }
         }
-        stage('SetupDatabase') {
-            steps {
-                sh '''#!/bin/bash
-
-                    echo "Clear Database ..."
-                    sudo -u postgres psql -c "DROP DATABASE IF EXISTS mspr2_test;"
-                    
-                    echo "Setup new Database ..."
-                    sudo -u postgres psql -c "CREATE DATABASE mspr2_test OWNER mspr2;"
-                '''
-            }
-        }
+        
         stage('MigrateDatabase') {
             steps {
                 sh '''#!/bin/bash
