@@ -7,7 +7,7 @@ pipeline {
                 sh '''#!/bin/bash
                     touch .env
                     echo '
-                        DATABASE_URL=postgresql://mspr2:123456789@localhost:5432/mspr2_test
+                        DATABASE_URL=postgresql://uy5paos4qw9hdpg5mklq:1tjg9DNqUwyPzUQLMwvf@bk0gqvjcvowyhj2azddb-postgresql.services.clever-cloud.com:5432/bk0gqvjcvowyhj2azddb
                         SECRET_KEY=zefuihzefizpaefhzoiefhzeiofhze2342ofhizefzoe
                         TESTING=true
                     ' > .env
@@ -28,6 +28,12 @@ pipeline {
                    sudo /etc/poetry/bin/poetry run pytest
                 '''
             }
+        }
+    }
+    post {
+        always {
+            echo 'Delete directory'
+            deleteDir()
         }
     }
 }

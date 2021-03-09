@@ -27,6 +27,7 @@ uvicorn = "^0.13.3"
 PyJWT = "^2.0.0"
 passlib = "^1.7.4"
 alembic = "^1.4.3"
+python-magic = "^0.4.22"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"

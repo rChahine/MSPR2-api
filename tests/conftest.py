@@ -1,19 +1,17 @@
 import pytest
-from api import app
-from api.database import Base, engine
-from api.models import User
 from fastapi.testclient import TestClient
 from sqlalchemy import insert
+
+from api import app
+from api.authentication.models import User
+from api.database import Base, engine
 
 Base.metadata.drop_all(bind=engine)  # Clear database
 Base.metadata.create_all(bind=engine)  # Regenerate database
 
-stmt = (
-    insert(User).
-    values(
-        identifiant='user',
-        password="$2b$12$Gr3bUaIsvDYgKnTzC4xIHuA2KgmTX6jb/IAArzfq/JeIhz8ha41Ci"
-    )
+stmt = insert(User).values(
+    identifiant="administrateur",
+    password="$2a$04$PuoNFmToF5Xoa6H.Z00.kOuzd2.OYvT/kimCy5f28A5PuDtcjh3nu",
 )
 
 engine.connect().execute(stmt)
@@ -25,10 +23,7 @@ client = TestClient(app)
 def signin_body():
     """ returns values to signin route """
 
-    return dict(
-        login="user",
-        password="test"
-    )
+    return dict(identifiant="administrateur", password="1Adm!n!strateur")
 
 
 @pytest.fixture
@@ -40,7 +35,7 @@ def signin(signin_body):
 
 
 @pytest.fixture
-def client_auth_user(signin):
+def client_auth(signin):
     """ add token in header for protected route """
     client.headers.update({"Authorization": signin["token"]})
     return client
