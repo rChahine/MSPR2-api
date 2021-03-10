@@ -23,7 +23,7 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh '''#!/bin/bash
+                bat '''
                    poetry run pytest
                 '''
             }
