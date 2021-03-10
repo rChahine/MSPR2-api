@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Setup config') {
             steps {
-                sh '''#!/bin/bash
+                bat '''
 
                     touch .env
                     echo '
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Install latests dependencies') {
             steps {
-                sh '''#!/bin/bash
+                bat '''
                     poetry install
                 '''
             }
@@ -25,14 +25,14 @@ pipeline {
         
         stage('MigrateDatabase') {
             steps {
-                sh '''#!/bin/bash
+                bat '''
                     poetry run alembic upgrade head
                 '''
             }
         }
         stage('RunApi') {
             steps {
-                sh '''#!/bin/bash
+                bat '''
                     poetry run uvicorn api:app
                 '''
             }
