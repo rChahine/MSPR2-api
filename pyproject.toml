@@ -14,7 +14,7 @@ description = ""
 authors = ["Romain CHAHINE <romain.chahine@rwigo.com>"]
 
 [tool.poetry.dependencies]
-python = "3.9.1"
+python = "^3.9.1"
 psycopg2-binary = "^2.8.6"
 requests = "^2.25.1"
 aiofiles = "^0.6.0"
