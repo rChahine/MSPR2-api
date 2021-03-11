@@ -26,3 +26,5 @@ Cette API utilise le driver psycopg2 pour se connecter à une base de données P
 ## Documentations
 
 1. [Installation](documentation/code-architecture.md)
+
+Une modification pour déclencher le build sur jenkins.
